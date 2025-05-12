@@ -19,5 +19,6 @@ resource "helm_release" "these" {
 
   depends_on = [
     module.eks,
+    kubernetes_namespace.argocd,
   ]
 }
