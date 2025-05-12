@@ -10,18 +10,6 @@ module "eks" {
   cluster_endpoint_public_access  = false
   authentication_mode             = "API_AND_CONFIG_MAP"
 
-  # cluster_security_group_additional_rules = {
-  #   for group_id in data.aws_security_groups.extra.ids :
-  #   "access_443_from_${group_id}" => {
-  #     description              = "Access EKS from group ${group_id}"
-  #     protocol                 = "tcp"
-  #     from_port                = 443
-  #     to_port                  = 443
-  #     type                     = "ingress"
-  #     source_security_group_id = group_id
-  #   }
-  # }
-
   enable_cluster_creator_admin_permissions = true
 
   access_entries = {
@@ -80,7 +68,7 @@ module "eks" {
 
   eks_managed_node_groups = {
     arm64_nodes = {
-      name                     = "${local.cluster_resource_prefix}-nodes"
+      name                     = "${local.cluster_resource_prefix}-arm64-nodes"
       iam_role_use_name_prefix = true
       iam_role_name            = "${local.cluster_resource_prefix}-arm64-nodes"
       desired_size             = 3
@@ -96,8 +84,8 @@ module "eks" {
       instance_types = local.eks_nodes_instance_types
       capacity_type  = "ON_DEMAND"
 
-      attach_vpc_cni_policy = true
-      disk_size             = 50
+      iam_role_attach_cni_policy = true
+      disk_size                  = 50
 
       # Needed by the aws-ebs-csi-driver
       iam_role_additional_policies = {
