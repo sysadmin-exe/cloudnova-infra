@@ -11,7 +11,13 @@ Here lies the AWS IAC written in terraform for the CloudNova product. Leveraging
 - OIDC for cluster
 
 # Cloud Infra CICD
-Github actions is used for this deployment process
+Github actions is used for this deployment process. AWS OICD is used for authentication between Github and AWS to avoid adding AWS secrets and keys in Github.
+
+### Steps to deploy changes
+- Check the contributing section below to see how to setup pre-commit
+- Create PR to main branch
+- GHA runs `tofu plan` to review changes. Plan output is commented into PR for reviewer
+- Once PR is merged, GHA runs apply workflow. This will do another plan again and after that create an issue to get manual approval before apply can
 
 
 ![alt text](docs/infra-cicd.png "Infra CICD")
@@ -60,5 +66,19 @@ No inputs.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_eks_details"></a> [eks\_details](#output\_eks\_details) | n/a |
+| <a name="output_vpc_details"></a> [vpc\_details](#output\_vpc\_details) | n/a |
 <!-- END_TF_DOCS -->
+
+## Contributing
+
+### Pre-commit config
+
+This repository has [pre-commit](https://github.com/antonbabenko/pre-commit-terraform) set up configured. You will need to have the following installed on your local computer. We have pre-commit set up for `terraform fmt` and `terraform-docs`. In the future we would like to add other support actions like `tfsec` or `trivy`.
+
+- Pre-commit: Initialize pre-commit by running `pre-commit install` in the root directory of the repository
+- Install pre-commit cli
+- Install Terraform CLI
+- Install Terraform Docs
