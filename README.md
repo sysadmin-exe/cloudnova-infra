@@ -7,7 +7,8 @@ Here lies the AWS IAC written in terraform for the CloudNova product. Leveraging
 - EKS
 - IAM
 - KMS
--
+
+
 
 
 <!-- BEGIN_TF_DOCS -->
@@ -42,9 +43,7 @@ Here lies the AWS IAC written in terraform for the CloudNova product. Leveraging
 
 | Name | Type |
 |------|------|
-| [helm_release.argo_rollouts](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
-| [helm_release.argocd](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
-| [helm_release.nginx_ingress](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
+| [helm_release.these](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [kubernetes_namespace.argocd](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [aws_caller_identity.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/caller_identity) | data source |
 | [aws_partition.current](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/partition) | data source |
