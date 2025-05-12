@@ -7,8 +7,14 @@ Here lies the AWS IAC written in terraform for the CloudNova product. Leveraging
 - EKS
 - IAM
 - KMS
+- Cluster Addons
+- OIDC for cluster
+
+# Cloud Infra CICD
+Github actions is used for this deployment process
 
 
+![alt text](docs/infra-cicd.png "Infra CICD")
 
 
 <!-- BEGIN_TF_DOCS -->
