@@ -27,5 +27,6 @@ jobs:
         run: tofu init
       - name: Opentofu Validate
         run: tofu validate
+
       - name: OpenTofu Plan
         run: tofu plan
