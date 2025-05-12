@@ -27,7 +27,7 @@ jobs:
       - name: Setup AWS OIDC
         uses: aws-actions/configure-aws-credentials@v4.1.0
         with:
-          aws-region: us-east-2
+          aws-region: eu-west-1
           role-to-assume: arn:aws:iam::281138642656:role/gha-cloudnova-infra
 
       - name: Set up OpenTofu

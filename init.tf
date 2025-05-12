@@ -18,11 +18,11 @@ terraform {
 }
 
 provider "aws" {
-  region  = "eu-west-1"
-  profile = "victor"
-  assume_role {
-    role_arn = "arn:aws:iam::281138642656:role/terraform-admin"
-  }
+  region = "eu-west-1"
+  # profile = "victor"
+  # assume_role {
+  #   role_arn = "arn:aws:iam::281138642656:role/terraform-admin"
+  # }
   default_tags {
     tags = {
       Environment = "dev"
