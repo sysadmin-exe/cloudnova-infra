@@ -38,5 +38,19 @@ EOF
       version    = "72.3.0"
       namespace  = "monitoring"
     }
+
+    external_secrets = {
+      name       = "external-secrets"
+      repository = "https://charts.external-secrets.io"
+      chart      = "external-secrets"
+      version    = "0.9.13"
+      namespace  = "external-secrets"
+      set = [
+        {
+          name  = "serviceAccount.annotations.eks\\.amazonaws\\.com\\/role-arn"
+          value = module.external_secrets_irsa_role.iam_role_arn
+        }
+      ]
+    }
   }
 }

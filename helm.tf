@@ -17,6 +17,14 @@ resource "helm_release" "these" {
   namespace = lookup(each.value, "namespace", local.argocd_namespace)
   values    = lookup(each.value, "values", [])
 
+  dynamic "set" {
+    for_each = lookup(each.value, "set", [])
+    content {
+      name  = set.value.name
+      value = set.value.value
+    }
+  }
+
   depends_on = [
     module.eks,
     kubernetes_namespace.argocd,

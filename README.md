@@ -9,6 +9,12 @@ Here lies the AWS IAC written in terraform for the CloudNova product. Leveraging
 - KMS
 - Cluster Addons
 - OIDC for cluster
+- Helm releases for the following as specified in `locals.helm_releases`
+  - argocd server
+  - argocd rollouts
+  - nginx ingress
+  - kube prometheus
+  - external secrets
 
 # Cloud Infra CICD
 Github actions is used for this deployment process. AWS OICD is used for authentication between Github and AWS to avoid adding AWS secrets and keys in Github.
@@ -48,6 +54,7 @@ Github actions is used for this deployment process. AWS OICD is used for authent
 | <a name="module_allow_eks_access_iam_policy"></a> [allow\_eks\_access\_iam\_policy](#module\_allow\_eks\_access\_iam\_policy) | terraform-aws-modules/iam/aws//modules/iam-policy | ~> 5.39 |
 | <a name="module_eks"></a> [eks](#module\_eks) | terraform-aws-modules/eks/aws | 20.8.5 |
 | <a name="module_eks_admins_iam_role"></a> [eks\_admins\_iam\_role](#module\_eks\_admins\_iam\_role) | terraform-aws-modules/iam/aws//modules/iam-assumable-role | ~> 5.39 |
+| <a name="module_external_secrets_irsa_role"></a> [external\_secrets\_irsa\_role](#module\_external\_secrets\_irsa\_role) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | 5.39.0 |
 | <a name="module_vpc"></a> [vpc](#module\_vpc) | terraform-aws-modules/vpc/aws | ~> 5.21 |
 | <a name="module_vpc_cni_irsa"></a> [vpc\_cni\_irsa](#module\_vpc\_cni\_irsa) | terraform-aws-modules/iam/aws//modules/iam-role-for-service-accounts-eks | n/a |
 
