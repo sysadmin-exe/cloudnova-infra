@@ -74,6 +74,8 @@ jobs:
   opentofu-apply:
     name: OpenTofu Apply
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    needs: [manual-approval, opentofu-plan]
     permissions:
       id-token: write
       contents: read
@@ -92,6 +94,10 @@ jobs:
 
       - name: Set up OpenTofu
         uses: opentofu/setup-opentofu@v1
+
+      - name: OpenTofu Init
+        id: init
+        run: tofu init
 
       - name: OpenTofu Apply
         if: github.event_name == 'push'
