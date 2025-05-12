@@ -18,9 +18,14 @@ jobs:
         run: |
           curl -L https://github.com/opentofu/opentofu/releases/latest/download/opentofu-linux-amd64 -o /usr/local/bin/opentofu
           chmod +x /usr/local/bin/opentofu
-
+      - name: Setup AWS OIDC
+        uses: aws-actions/configure-aws-credentials@v4.1.0
+        with:
+          aws-region: us-east-2
+          role-to-assume: gha-cloudnova-infra
       - name: Initialize OpenTofu
         run: tofu init
-
+      - name: Opentofu Validate
+        run: tofu validate
       - name: OpenTofu Plan
         run: tofu plan
