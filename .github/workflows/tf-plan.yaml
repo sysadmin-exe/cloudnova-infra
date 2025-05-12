@@ -9,6 +9,9 @@ jobs:
   opentofu-plan:
     name: OpenTofu Plan
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
       - name: Checkout code
@@ -22,7 +25,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4.1.0
         with:
           aws-region: us-east-2
-          role-to-assume: gha-cloudnova-infra
+          role-to-assume: arn:aws:iam::281138642656:role/gha-cloudnova-infra
       - name: Initialize OpenTofu
         run: tofu init
       - name: Opentofu Validate
