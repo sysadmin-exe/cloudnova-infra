@@ -55,4 +55,59 @@ resource "helm_release" "kube_prometheus_stack" {
   chart            = local.kube_prometheus_stack_helm_chart.chart
   version          = local.kube_prometheus_stack_helm_chart.version
 
+  values = [
+    yamlencode({
+      prometheus = {}
+        prometheusSpec = {
+          serviceMonitorSelectorNilUsesHelmValues = false 
+          serviceMonitorSelector = {
+            matchLabels = {
+              app = "loki"
+            }
+          }
+        }
+    })
+  ]
+}
+
+# 6. Install Loki
+resource "helm_release" "loki" {
+  name             = local.loki_helm_chart.name
+  namespace        = local.loki_helm_chart.namespace
+  create_namespace = true
+  repository       = local.loki_helm_chart.repository
+  chart            = local.loki_helm_chart.chart
+  version          = local.loki_helm_chart.version
+
+  values = [
+    yamlencode({
+      loki = {
+        serviceMonitor = {
+          enabled = true
+          labels = {
+            app = "loki"
+          }
+        }
+      }
+    })
+  ]
+
+  set {
+    name  = "promtail.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "loki.serviceMonitor.enabled"
+    value = "true"
+  }
+
+  set {
+    name  = "loki.prometheus.enabled"
+    value = "true"
+  }
+  
+  depends_on = [
+    helm_release.kube_prometheus_stack
+  ]
 }

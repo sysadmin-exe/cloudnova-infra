@@ -11,13 +11,13 @@ terraform {
 
 provider "helm" {
   kubernetes {
-    host        = "https://0.0.0.0:7893"
+    host        = "https://127.0.0.1:7893"
     config_path = "~/.kube/config"
 
   }
 }
 
 provider "kubernetes" {
-  host        = "https://0.0.0.0:7893"
+  host        = "https://127.0.0.1:7893"
   config_path = "~/.kube/config"
 }

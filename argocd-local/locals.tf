@@ -18,18 +18,25 @@ locals {
     chart      = "argo-rollouts"
     version    = "2.39.5"
   }
-  nginx_ingress_helm_chart = {
-    name       = "ingress-nginx"
-    repository = "https://kubernetes.github.io/ingress-nginx"
-    chart      = "ingress-nginx"
-    version    = "4.12.2"
-    namespace  = "nginx-ingress"
-  }
+  # nginx_ingress_helm_chart = {
+  #   name       = "ingress-nginx"
+  #   repository = "https://kubernetes.github.io/ingress-nginx"
+  #   chart      = "ingress-nginx"
+  #   version    = "4.13.0"
+  #   namespace  = "nginx-ingress"
+  # }
   kube_prometheus_stack_helm_chart = {
     name       = "kube-prometheus-stack"
     repository = "https://prometheus-community.github.io/helm-charts"
     chart      = "kube-prometheus-stack"
     version    = "72.3.0"
+    namespace  = "monitoring"
+  }
+  loki_helm_chart = {
+    name       = "loki"
+    repository = "https://grafana.github.io/helm-charts"
+    chart      = "loki-stack"
+    version    = "2.10.2"
     namespace  = "monitoring"
   }
 }
